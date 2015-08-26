@@ -90,6 +90,7 @@
 		<script src="{{ asset('js/jquery-2.1.3.min.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('js/restfulizer.js') }}"></script> 
+		<script src="{{ asset('js/highcharts.js') }}"></script> 
 		<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
 	</body>
 </html>
