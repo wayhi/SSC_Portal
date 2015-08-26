@@ -8,33 +8,85 @@ SSC Statistic
 {{-- Content --}}
 
 @section('content')
-
+<script src="{{asset('/js/highcharts_themes/grid-light.js')}}"></script>
 <script type="text/javascript">
-   $(function(){ 
-        $('#container').highcharts({
-            chart: {
-                type: 'bar'
-            },
+   $(function () {
+    $('#container1').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Repeat Times'
+        },
+        subtitle: {
+            text: 'Source: CQ, Last 500 Records'
+        },
+        xAxis: {
+            categories: []
+        },
+        yAxis: {
             title: {
-                text: 'Fruit Consumption'
-            },
-            xAxis: {
-                categories: ['Apples', 'Bananas', 'Oranges']
-            },
-            yAxis: {
-                title: {
-                    text: 'Fruit eaten'
-                }
-            },
-            series: [{
-                name: 'Jane',
-                data: [1, 0, 4]
-            }, {
-                name: 'John',
-                data: [5, 7, 3]
-            }]
-        });
+                text: 'Repeat Times of Total Number'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Odd',
+            data: {{App\Models\view_cq::take(500)->orderby('id')->lists('ODD')}}
+        }, {
+            name: 'Even',
+            data: {!!App\Models\view_cq::take(500)->orderby('id')->lists('EVEN');!!}
+        }
+
+        ]
     });
+
+    $('#container2').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'SSC Repeat Times'
+        },
+        subtitle: {
+            text: 'Source: CQ'
+        },
+        xAxis: {
+            categories: []
+        },
+        yAxis: {
+            title: {
+                text: 'Repeat Times of Total Number'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Big',
+            data: {!!App\Models\view_cq::take(500)->orderby('id')->lists('BIG');!!}
+        },
+        {
+            name: 'Small',
+            data: {!!App\Models\view_cq::take(500)->orderby('id')->lists('SMALL');!!}
+        }
+
+        ]
+    });
+
+});
 </script>
 
 
@@ -51,8 +103,8 @@ SSC Statistic
             </div>
 
             
-            <div id="container" style="width:100%; height:400px"></div> 
-
+            <div id="container1" style="width:100%; height:400px"></div> 
+            <div id="container2" style="width:100%; height:400px"></div> 
 
         </form>
     </div>

@@ -15,4 +15,9 @@ Route::get('/', ['as'=>'home',function () {
     return view('ssc.statistic');
 }]);
 
-
+Route::get('odd_repeat_times',function(){
+			return App\Models\view_cq::orderby('id','desc')->take(50)->lists('ODD');
+				});
+Route::get('even_repeat_times',function(){
+			return App\Models\view_cq::all()->take(50)->lists('EVEN');
+				});
