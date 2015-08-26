@@ -12,7 +12,7 @@
 */
 
 Route::get('/', ['as'=>'home',function () {
-    return view('welcome');
+    return view('ssc.statistic');
 }]);
 
 

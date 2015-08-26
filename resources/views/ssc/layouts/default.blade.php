@@ -75,7 +75,7 @@
 		<!-- Container -->
 		<div class="container">
 			<!-- Notifications -->
-			@include('Sentinel::layouts/notifications')
+			@include('ssc.layouts.notifications')
 			<!-- ./ notifications -->
 
 			<!-- Content -->
