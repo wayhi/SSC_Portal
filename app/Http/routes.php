@@ -12,12 +12,12 @@
 */
 
 Route::get('/', ['as'=>'home','middleware' => 'sentry.auth',function () {
-    return view('ssc.statistic',['type'=>'重庆时时彩']);
+    return view('ssc.statistic',['type'=>'重庆时时彩','count'=>100]);
 }]);
 
 Route::post('/statistic', ['as'=>'statistic','middleware' => 'sentry.auth',function () {
 	
-    return view('ssc.statistic',['type'=>Input::get('type')]);
+    return view('ssc.statistic',['type'=>Input::get('type'),'count'=>Input::get('count')]);
 }]);
 
 
