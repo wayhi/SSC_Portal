@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 class view_jx extends Model
 {
 	
-	protected $table ='vw_log_jx';
+	protected $table ='vw_log_JX';
 }

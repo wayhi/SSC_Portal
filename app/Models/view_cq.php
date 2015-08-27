@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 class view_cq extends Model
 {
 	
-	protected $table ='vw_log_cq';
+	protected $table ='vw_log_CQ';
 }
