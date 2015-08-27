@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', ['as'=>'home',function () {
-    return view('ssc.statistic');
+Route::get('/', ['as'=>'home','middleware' => 'sentry.auth',function () {
+    return view('ssc.statistic',['type'=>'重庆时时彩']);
 }]);
 
-Route::get('odd_repeat_times',function(){
-			return App\Models\view_cq::orderby('id','desc')->take(50)->lists('ODD');
-				});
-Route::get('even_repeat_times',function(){
-			return App\Models\view_cq::all()->take(50)->lists('EVEN');
-				});
+Route::post('/statistic', ['as'=>'statistic','middleware' => 'sentry.auth',function () {
+	
+    return view('ssc.statistic',['type'=>Input::get('type')]);
+}]);
+
+

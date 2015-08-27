@@ -86,11 +86,6 @@
 			<!-- ./ content -->
 		</div>
 
-		<!-- ./ container -->
-
-		<!-- Javascripts
-		================================================== -->
 		
-		<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
 	</body>
 </html>

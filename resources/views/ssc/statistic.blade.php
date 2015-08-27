@@ -19,7 +19,7 @@ SSC Statistic
             text: 'Repeat Times'
         },
         subtitle: {
-            text: 'Source: CQ, Last 500 Records'
+            text: 'Source: {{$type}}, Last 500 Records'
         },
         xAxis: {
             categories: []
@@ -39,10 +39,29 @@ SSC Statistic
         },
         series: [{
             name: 'Odd',
-            data: {{App\Models\view_cq::take(500)->orderby('id')->lists('ODD')}}
+            data: @if($type=='重庆时时彩')
+                    {!!App\Models\view_cq::take(500)->orderby('id')->lists('ODD')!!}
+                  @elseif($type=='江西时时彩')
+                    {!!App\Models\view_jx::take(500)->orderby('id')->lists('ODD')!!}
+                  @elseif($type=='天津时时彩')
+                    {!!App\Models\view_tj::take(500)->orderby('id')->lists('ODD')!!}
+                  @endif
+
+
+
+
+
+
         }, {
             name: 'Even',
-            data: {!!App\Models\view_cq::take(500)->orderby('id')->lists('EVEN');!!}
+            data: @if($type=='重庆时时彩')
+                    {!!App\Models\view_cq::take(500)->orderby('id')->lists('EVEN')!!}
+                  @elseif($type=='江西时时彩')
+                    {!!App\Models\view_jx::take(500)->orderby('id')->lists('EVEN')!!}
+                  @elseif($type=='天津时时彩')
+                    {!!App\Models\view_tj::take(500)->orderby('id')->lists('EVEN')!!}
+                  @endif
+
         }
 
         ]
@@ -53,10 +72,10 @@ SSC Statistic
             type: 'line'
         },
         title: {
-            text: 'SSC Repeat Times'
+            text: 'Repeat Times'
         },
         subtitle: {
-            text: 'Source: CQ'
+            text: 'Source: {{$type}}, Last 500 Records'
         },
         xAxis: {
             categories: []
@@ -76,11 +95,23 @@ SSC Statistic
         },
         series: [{
             name: 'Big',
-            data: {!!App\Models\view_cq::take(500)->orderby('id')->lists('BIG');!!}
+            data: @if($type=='重庆时时彩')
+                    {!!App\Models\view_cq::take(500)->orderby('id')->lists('BIG')!!}
+                  @elseif($type=='江西时时彩')
+                    {!!App\Models\view_jx::take(500)->orderby('id')->lists('BIG')!!}
+                  @elseif($type=='天津时时彩')
+                    {!!App\Models\view_tj::take(500)->orderby('id')->lists('BIG')!!}
+                  @endif
         },
         {
             name: 'Small',
-            data: {!!App\Models\view_cq::take(500)->orderby('id')->lists('SMALL');!!}
+            data: @if($type=='重庆时时彩')
+                    {!!App\Models\view_cq::take(500)->orderby('id')->lists('SMALL')!!}
+                  @elseif($type=='江西时时彩')
+                    {!!App\Models\view_jx::take(500)->orderby('id')->lists('SMALL')!!}
+                  @elseif($type=='天津时时彩')
+                    {!!App\Models\view_tj::take(500)->orderby('id')->lists('SMALL')!!}
+                  @endif
         }
 
         ]
@@ -90,25 +121,31 @@ SSC Statistic
 </script>
 
 
-<div class="row">
-    <div class="col-md-12">
-        <form method="POST" action="{{ route('sentinel.users.store') }}" accept-charset="UTF-8">
 
-            <h2>SSC Statistic</h2>
+    
+        <form method="POST" action="{{ route('statistic') }}" accept-charset="UTF-8">
+            <div class="row">
+                <div class="col-md-4">
+                <h2>SSC Statistic</h2>
+                </div>
+                <div class='col-md-4'><h2>
+                    <select name='type' id='type'>
+                      <option value='重庆时时彩' @if($type=='重庆时时彩')selected @endif >重庆时时彩</option>
+                      <option value='江西时时彩' @if($type=='江西时时彩')selected @endif>江西时时彩</option>
+                      <option value='天津时时彩' @if($type=='天津时时彩')selected @endif>天津时时彩</option>
+                 
+                    </select> </h2>
+                </div>  
+                <div class='col-md-4'>
+                    <input name="_token" value="{{ csrf_token() }}" type="hidden">
+                    <h2> <input type="submit" class="btn btn-primary" value='Load'></h2></div>  
+            </div>
             
-                <div classs='col-md-4'>
-                <input type="button" class="btn btn-primary" value='Load'>
-
-
+            <div class='row'>
+                <div id="container1" style="width:100%; height:400px"></div> 
+                <div id="container2" style="width:100%; height:400px"></div>
             </div>
 
-            
-            <div id="container1" style="width:100%; height:400px"></div> 
-            <div id="container2" style="width:100%; height:400px"></div> 
-
-        </form>
-    </div>
-</div>
-
+ </form>
 
 @stop
