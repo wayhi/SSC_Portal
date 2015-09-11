@@ -27,7 +27,7 @@ class CountController extends BaseController
 
     private function count($type,$qty)
     {
-        $records = ssc_record::where('type',$type)->orderby('id','desc')->take($qty)->get();
+        $records = ssc_record::where('type',$type)->orderby('serial_no','desc')->take($qty)->get();
         $count_arr = [];
 
         for ($i=0; $i <10 ; $i++) { 
