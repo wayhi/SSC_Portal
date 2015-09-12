@@ -83,6 +83,7 @@ SSC Statistic
                                   <option value='20' @if($count==20)selected @endif>20</option>
                                   <option value='50' @if($count==50)selected @endif>50</option>
                                   <option value='100' @if($count==100)selected @endif>100</option>
+                                  <option value='500' @if($count==100)selected @endif>500</option>
                                 </select> Records
 
                         </td>
